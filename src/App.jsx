@@ -1,5 +1,6 @@
-import { ArrowDownToLine, ArrowLeft, BatteryCharging, BatteryFull, ChevronRight, ChevronUp, Home, Layers, Layout, LockIcon, Moon, Pen, Pencil, Plus, Power, RotateCcw, RotateCw, Settings, Star, Volume2, Wifi, X } from 'lucide-react';
+import { File, ArrowDownToLine, ArrowLeft, ArrowRight, Battery, BatteryCharging, BatteryFull, Bluetooth, Cast, ChevronRight, ChevronUp, Copy, Github, Home, Layers, Layout, Linkedin, LockIcon, Moon, Pen, Pencil, PersonStanding, Plane, Plus, Power, RotateCcw, RotateCw, Search, Settings, ShieldAlert, Star, SunMedium, Volume2, Wifi, X, MoreHorizontal } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { getDaysInMonth, set } from 'date-fns';
 import Itens from './components/pageConfig/Itens';
 
 function App() {
@@ -10,9 +11,13 @@ function App() {
   const [isConfig, setConfig] = useState(false);
   const [isConfigPower, setConfigPower] = useState(false);
   const [isConfigWindows, setConfigWindows] = useState(false);
+  const [isCalendar, setCalendar] = useState(false);
+  const [isContact, setContact] = useState(false);
+  const [isVscode, setVscode] = useState(false);
 
   const [isIconEdge, setIconEdge] = useState(false);
   const [isIconConfig, setIconConfig] = useState(false);
+  const [isIconVscode, setIconVscode] = useState(false);
 
   const [isPage1, setPage1] = useState(true);
   const [isPage2, setPage2] = useState(false);
@@ -20,6 +25,52 @@ function App() {
   const [isUrl1, setUrl1] = useState(true);
   const [isUrl2, setUrl2] = useState(false);
 
+  const[isVscodeExplorer, setVscodeExplorer] = useState(false);
+  const[isVscodeSearch, setVscodeSearch] = useState(false);
+  const[isVscodeExtensions, setVscodeExtensions] = useState(false);
+
+  //Pegar calendario -----------------------------------------------------------------------------------------------------
+  const now = new Date();
+  // mes inicia no 0
+  const month = String(now.getMonth());
+  const year = now.getFullYear();
+
+  const daysInMonth = getDaysInMonth(new Date(year, month));
+
+  const days = [];
+  for (let i = 1; i <= daysInMonth; i++) {
+    days.push(i);
+  }
+
+  const TodayDay = String(now.getDate()).padStart(2, '0');
+
+  var nameMonth = '';
+  if(month == 0){
+    nameMonth = 'January';
+  }else if(month == 1){
+    nameMonth = 'February';
+  }else if(month == 2){
+    nameMonth = 'March';
+  }else if(month == 3){
+    nameMonth = 'April';
+  }else if(month == 4){
+    nameMonth = 'May';
+  }else if(month == 5){
+    nameMonth = 'June';
+  }else if(month == 6){
+    nameMonth = 'July';
+  }else if(month == 7){
+    nameMonth = 'August';
+  }else if(month == 8){
+    nameMonth = 'September';
+  }else if(month == 9){
+    nameMonth = 'October';
+  }else if(month == 10){
+    nameMonth = 'November';
+  }else if(month == 11){
+    nameMonth = 'December';
+  }
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -60,8 +111,12 @@ function App() {
   function openWindow() {
     if (isWindows) {
       setWindows(false);
+      setConfigPower(false);
     }else{
       setWindows(true);
+      setConfigWindows(false);
+      setConfigPower(false);
+      setCalendar(false);
     }
   }
 
@@ -71,6 +126,9 @@ function App() {
       setConfigPower(false);
     }else{
       setConfigPower(true);
+      setConfigWindows(false);
+      setCalendar(false);
+      setContact(false);
     }
   }
 
@@ -78,8 +136,26 @@ function App() {
   function openConfigWindows() {
     if (isConfigWindows) {
       setConfigWindows(false);
+      setConfigPower(false);
     }else{
       setConfigWindows(true);
+      setWindows(false);
+      setConfigPower(false);
+      setCalendar(false);
+      setContact(false);
+    }
+  }
+
+  //-- Função para abrir o menu de contato
+  function openContact() {
+    if (isContact) {
+      setContact(false);
+    }else{
+      setContact(true);
+      setWindows(false);
+      setConfigPower(false);
+      setConfigWindows(false);
+      setCalendar(false);
     }
   }
 
@@ -90,11 +166,16 @@ function App() {
     }else{
       setEdge(true);
       setIconEdge(true);
-      setWindows(false);
-      setConfig(false);
+
       setUrl1(true);
       setUrl2(false);
       setPage1(true);
+
+      setWindows(false);
+      setConfig(false);
+      setConfigPower(false);
+      setConfigWindows(false);
+      setVscode(false);
     }
   }
 
@@ -112,11 +193,17 @@ function App() {
   function openConfig() {
     if (isConfig) {
       setConfig(false);
+      setConfigPower(false);
     }else{
       setConfig(true);
       setIconConfig(true);
+      setConfigPower(false);
+      setConfigWindows(false);
+      setCalendar(false);
+      setContact(false);
       setWindows(false);
       setEdge(false);
+      setVscode(false);
     }
   }
 
@@ -125,6 +212,78 @@ function App() {
     if (isConfig) {
       setConfig(false);
       setIconConfig(false);
+    }
+  }
+
+  //-- Função para abrir o Calendario
+  function openCalendar() {
+    if (isCalendar) {
+      setCalendar(false);
+    }else{
+      setCalendar(true);
+      setWindows(false);
+      setConfigPower(false);
+      setConfigWindows(false);
+      setContact(false);
+    }
+  }
+
+  //-- Função para abrir o Vscode
+  function openVscode() {
+    if (isVscode) {
+      setVscode(false);
+    }else{
+      setVscode(true);
+      setIconVscode(true);
+
+      setWindows(false);
+      setConfigPower(false);
+      setConfigWindows(false);
+      setContact(false);
+      setCalendar(false);
+      setEdge(false);
+      setConfig(false);
+    }
+  }
+
+  //-- Função para fechar o Vscode
+  function closeVscode() {
+    if (isVscode) {
+      setVscode(false);
+      setIconVscode(false);
+    }
+  }
+
+  //-- Função para abrir o Vscode Explorer
+  function openVscodeExplorer() {
+    if (isVscodeExplorer) {
+      setVscodeExplorer(false);
+    }else{
+      setVscodeExplorer(true);
+      setVscodeSearch(false);
+      setVscodeExtensions(false);
+    }
+  }
+
+  //-- Função para abrir o Vscode Search
+  function openVscodeSearch() {
+    if (isVscodeSearch) {
+      setVscodeSearch(false);
+    }else{
+      setVscodeSearch(true);
+      setVscodeExplorer(false);
+      setVscodeExtensions(false);
+    }
+  }
+
+  //-- Função para abrir o Vscode Extensions
+  function openVscodeExtensions() {
+    if (isVscodeExtensions) {
+      setVscodeExtensions(false);
+    }else{
+      setVscodeExtensions(true);
+      setVscodeExplorer(false);
+      setVscodeSearch(false);
     }
   }
 
@@ -155,6 +314,20 @@ function App() {
     }
   }
 
+  //-- Função para abrir uma nova página
+  function openNewPage() {
+    if (isPage1) {
+      setPage1(false);
+      setPage2(true);
+      setUrl2(true);
+      setUrl1(false);
+    }else{
+      setPage1(true);
+      setUrl1(true);
+      setUrl2(false);
+    }
+  }
+
   //-- Função para fechar a página 2
   function closePage2() {
     if (isPage2) {
@@ -162,6 +335,28 @@ function App() {
       setPage1(true);
       setUrl1(true);
       setUrl2(false);
+    }
+  }
+
+  //-- Função para restart pagina do Edge
+  function restartPage() {
+    if(isPage1){
+      setPage1(false);
+      setUrl1(false);
+
+      setTimeout(() => {
+        setPage1(true);
+         setUrl1(true);
+      }, 100);
+    }
+    if(isPage2){
+      setPage2(false);
+      setUrl2(false);
+
+      setTimeout(() => {
+        setPage2(true);
+        setUrl2(true);
+      }, 100);
     }
   }
 
@@ -247,21 +442,91 @@ function App() {
 
         {/* Config Windows */}
         {isConfigWindows ? (
-        <div className="absolute justify-center items-center h-[100%] pb-[48px] pe-2 pt-[5%] w-full">
-          <div className="bg-[#e1e5f3f5] flex h-[100%] w-[300px] ms-auto bottom-0 rounded-md">
+        <div className="absolute justify-center items-center h-[100%] pb-[48px] pe-2 pt-[17%] w-full">
+          <div className="h-[297px] w-[300px] ms-auto bottom-0 rounded-t-md">
+            <div className="bg-[#dbe0f1f8] w-[300px] absolute bottom-[88px] rounded-t-md border-t">
+              <div className="grid grid-cols-3 m-0 pt-4">
+                <div className='flex h-10 w-[80px] items-center justify-center ms-4 bg-[#fffffffe] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-gray-100 transition-all duration-500 hover:rounded-l-md cursor-pointer'>
+                    <Wifi className='h-4 text-[#6e717a99] w-[40px]'/>
+                  </div>
+                  <div className='flex items-center h-10 hover:bg-gray-100 transition-all duration-500 hover:rounded-r-md cursor-pointer'>
+                    <ChevronRight className='h-4 text-[#6e717a99] w-[40px]'/>
+                  </div>
+                </div>
+                <div className='flex h-10 w-[80px] items-center justify-center ms-2 bg-[#fffffffe] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-gray-100 transition-all duration-500 hover:rounded-l-md cursor-pointer'>
+                    <Bluetooth className='h-4 text-[#6e717a99] w-[40px]'/>
+                  </div>
+                  <div className='flex items-center h-10 hover:bg-gray-100 transition-all duration-500 hover:rounded-r-md cursor-pointer'>
+                    <ChevronRight className='h-4 text-[#6e717a99] w-[40px]'/>
+                  </div>
+                </div>
+                <div className='flex h-10 w-[80px] items-center justify-center ms-w bg-[#ffffff57] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-[#ffffffb4] transition-all duration-500 hover:rounded-md cursor-pointer'>
+                    <ShieldAlert className='h-4 text-[#6e717a99] w-[80px]'/>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 m-0 pt-4">
+                <div className='flex h-10 w-[80px] items-center justify-center ms-4 bg-[#ffffff57] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-[#ffffffb4] transition-all duration-500 hover:rounded-md cursor-pointer'>
+                    <Plane className='h-4 text-[#6e717a99] w-[80px]'/>
+                  </div>
+                </div>
+                <div className='flex h-10 w-[80px] items-center justify-center ms-2 bg-[#ffffff57] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-[#ffffffb4] transition-all duration-500 hover:rounded-md cursor-pointer'>
+                    <Battery className='h-4 text-[#6e717a99] w-[80px]'/>
+                  </div>
+                </div>
+                <div className='flex h-10 w-[80px] items-center justify-center ms-w bg-[#ffffff57] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-[#ffffffb4] transition-all duration-500 hover:rounded-md cursor-pointer'>
+                    <PersonStanding className='h-4 text-[#6e717a99] w-[80px]'/>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 m-0 pt-4">
+                <div className='flex h-10 w-[80px] items-center justify-center ms-4 bg-[#ffffff57] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-[#ffffffb4] transition-all duration-500 hover:rounded-md cursor-pointer'>
+                    <SunMedium className='h-4 text-[#6e717a99] w-[80px]'/>
+                  </div>
+                </div>
+                <div className='flex h-10 w-[80px] items-center justify-center ms-2 bg-[#ffffff57] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-[#ffffffb4] transition-all duration-500 hover:rounded-md cursor-pointer'>
+                    <Cast className='h-4 text-[#6e717a99] w-[80px]'/>
+                  </div>
+                </div>
+                <div className='flex h-10 w-[80px] items-center justify-center ms-w bg-[#ffffff57] rounded-md '>
+                  <div className='flex items-center border-r border-gray-100 h-10 hover:bg-[#ffffffb4] transition-all duration-500 hover:rounded-md cursor-pointer'>
+                    <Copy className='h-4 text-[#6e717a99] w-[80px]'/>
+                  </div>
+                </div>
+              </div>
+              <div className='mb-2 mt-4'>
+                <div className='flex items-center'>
+                  <SunMedium className='h-5 text-[#6e717ac0] w-[70px]'/>
+                  <input type="range" className="w-[200px] h-[6px]" min="0" max="100"/>
+                </div>
+                <div className='flex items-center mt-3'>
+                  <Volume2 className='h-5 text-[#6e717ac0] w-[70px]'/>
+                  <input type="range" className="w-[200px] h-[6px]" min="0" max="100"/>
+                </div>
+              </div>
+            </div>
+
             <div className="bg-[#dbe0f1f8] w-[300px] absolute bottom-[48px] h-[40px] rounded-b-md border-t">
-              <div className='flex justify-between px-2 items-center h-[40px]'>
-                <div className='flex items-center hover:bg-[#e1e5f3] transition-all duration-500 p-[3px] rounded-md cursor-pointer'>
+              <div className='flex justify-between px-4 items-center h-[40px]'>
+                <div className='flex items-center hover:bg-[#e1e5f3] transition-all duration-500 rounded-md cursor-pointer px-1'>
                   <BatteryCharging className='h-5 text-[#6e717a]'/>
                   <p className='text-xs ms-1 text-[#6e717a]'>
                     100%
                   </p>
                 </div>
-                <div className='flex items-center'>
+                <div className='flex items-center p-1'>
                   <div className='hover:bg-[#e1e5f3] transition-all duration-500 p-[3px] rounded-md cursor-pointer'>
                     <Pencil className='h-4 text-[#6e717a]'/>
                   </div>
-                  <div className='hover:bg-[#e1e5f3] transition-all duration-500 p-[3px] rounded-md cursor-pointer'>
+                  <div className='hover:bg-[#e1e5f3] transition-all duration-500 p-[3px] rounded-md cursor-pointer' onClick={openConfig}>
                     <Settings className='h-4 text-[#6e717a]'/>
                   </div>
                 </div>
@@ -271,12 +536,64 @@ function App() {
           </div>
         </div>
         ) : null }
+
+        {/* Calendario */}
+        {isCalendar ? (
+        <div className="absolute justify-center items-center h-[100%] pb-[48px] pe-2 pt-[17%] w-full">
+          <div className="h-[297px] w-[300px] ms-auto bottom-0 rounded-t-md">
+            <div className="bg-[#dbe0f1f8] w-[300px] absolute bottom-[48px] rounded-md border-t">
+              <div className='grid grid-cols-7 p-2'>
+                <div className='flex justify-between items-center w-[280px] mx-auto px-3 text-sm'>
+                  <p>
+                    {nameMonth}
+                  </p>
+                  <p>
+                    {year}
+                  </p>
+                </div>
+              </div>
+              <div className='grid grid-cols-7 p-2'>
+                {days.map((day, index) => (
+                  <div 
+                    key={index} 
+                    className={`flex justify-center items-center h-[30px] border-[1px] hover:bg-[#e1e5f3] transition-all duration-500 cursor-pointer
+                    ${day == TodayDay ? 'bg-[#e7eaf2]' : ''}
+                    `}>
+                    <p className='text-xs text-[#6e717a]'>
+                      {day}
+                    </p>
+                  </div>
+                ))}  
+              </div>
+            </div>
+          </div>
+        </div>
+        ) : null }
+
+        {/* Contato */}
+        {isContact ? (
+        <div className="absolute justify-center items-center h-[100%] pb-[48px] pe-2 pt-[17%] w-full">
+          <div className="h-[297px] w-[300px] ms-auto bottom-0 rounded-t-md">
+            <div className="bg-[#dbe0f1f8] w-[120px] absolute bottom-[48px] ms-[20px] rounded-md border-t py-1">
+              <div className='flex justify-around items-center'>
+                <a href="https://github.com/MatheusChiodi" target="_blank" rel="noopener noreferrer">
+                  <Github className='h-5 text-[#6e717a] hover:text-[#000000] transition-all duration-500 cursor-pointer'/>
+                </a>
+                <a href="https://www.linkedin.com/in/matheus-chiodi-b484581aa" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className='h-5 text-[#6e717a] hover:text-[#000000] transition-all duration-500 cursor-pointer'/>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        ) : null }
+
         {/* Edge */}
-          {isEdge ? (
+        {isEdge ? (
           <div className="justify-center items-center h-[100%] pb-[45px] w-full bg-[#38393c] m-0 p-0">
             <div className="flex justify-between items-center m-0 p-0">
               <div className='flex m-0 p-0 items-center'>
-                <div className='mx-3 p-1 m-0 hover:bg-[#56585d] transition-all duration-500 cursor-pointer rounded-sm flex items-center h-[30px]'>
+                <div className='mx-3 p-1 m-0 hover:bg-[#56585d] transition-all duration-500 cursor-not-allowed rounded-sm flex items-center h-[30px]'>
                   <p className='m-0 text-gray-50'>
                     <Layout className="h-5 text-white rounded-md"/>
                   </p>
@@ -310,7 +627,7 @@ function App() {
                   </div>
                 ) : null}
 
-                <div className='mx-1 p-1 m-0 hover:bg-[#56585d] transition-all duration-500 cursor-pointer rounded-sm flex items-center h-[30px]' onClick={openPage2}>
+                <div className='mx-1 p-1 m-0 hover:bg-[#56585d] transition-all duration-500 cursor-pointer rounded-sm flex items-center h-[30px]' onClick={openNewPage}>
                   <p className='m-0 text-gray-50'>
                     <Plus className="h-4 text-white rounded-md"/>
                   </p>
@@ -322,7 +639,7 @@ function App() {
                     __
                   </p>
                 </div>
-                <div className='p-0 m-0 h-[45px] hover:bg-[#56585d] transition-all duration-500 px-3 cursor-pointer flex items-center'>
+                <div className='p-0 m-0 h-[45px] hover:bg-[#56585d] transition-all duration-500 px-3 cursor-not-allowed flex items-center'>
                   <p className='m-0 text-gray-50'>
                     <Layers className='h-5'/>
                   </p>
@@ -336,17 +653,17 @@ function App() {
             </div>
             <div className='w-full bg-[#56585d] h-[40px] px-2 flex items-center justify-between'>
               <div className='flex gap-3 w-full'>
-                <div className='m-0 p-[3px] flex items-center hover:bg-[#6d7077] transition-all duration-50 cursor-pointer rounded-sm'>
+                <div className='m-0 p-[3px] flex items-center hover:bg-[#6d7077] transition-all duration-50 rounded-sm cursor-not-allowed'>
                   <ArrowLeft className='h-5 text-gray-50'/>
                 </div>
-                <div className='m-0 p-[3px] flex items-center hover:bg-[#6d7077] transition-all duration-50 cursor-pointer rounded-sm'>
+                <div className='m-0 p-[3px] flex items-center hover:bg-[#6d7077] transition-all duration-50 cursor-pointer rounded-sm' onClick={restartPage}>
                   <RotateCw className='h-5 text-gray-50'/>
                 </div>
-                <div className='m-0 p-[3px] flex items-center hover:bg-[#6d7077] transition-all duration-50 cursor-pointer rounded-sm'>
+                <div className='m-0 p-[3px] flex items-center hover:bg-[#6d7077] transition-all duration-50 rounded-sm cursor-not-allowed'>
                   <Home className='h-5 text-gray-50'/>
                 </div>
-                <div className='w-[55%] text-gray-400 bg-[#46474b] px-4 rounded-xl flex items-center  justify-between'>
-                  <p className='flex items-center'>
+                <div className='w-[55%] text-gray-400 bg-[#46474b] px-4 rounded-xl flex items-center  justify-between cursor-not-allowed'>
+                  <p className='flex items-center text-sm overflow-hidden h-[32px]'>
                     <div className='hover:bg-[#56585d] transition-all duration-500 rounded-sm px-[2px] py-[4px] cursor-pointer me-2'>
                       <LockIcon className='h-3 text-gray-300'/>
                     </div>
@@ -374,7 +691,7 @@ function App() {
 
             {/*Tela 1*/}
             {isUrl1 ? (
-              <div className='w-full bg-[#fff] h-[88%] flex items-center justify-center m-0 p-0'>
+              <div className='w-full bg-[#fff] h-[87.5%] flex items-center justify-center m-0 p-0'>
                 <iframe src='https://matheuschiodi.github.io/Portfolio/' width='100%' height='100%' title="Portfolio" className='m-0 p-0'/>
               </div>
             ) : null}
@@ -387,6 +704,124 @@ function App() {
             </div>
             ) : null}
           </div>
+        ) : null }
+
+        {/* Vscode */}
+        {isVscode ? (
+        <div className="justify-center items-center h-[100%] pb-[45px] w-full bg-[#21222c] m-0">
+          <div className="flex justify-between items-center m-0 p-0">
+            <div className="flex items-center justify-center gap-1 text-gray-100 text-xs h-[30px] p-1">
+              <img src='vscode.svg' className='w-[20px] h-[20px]'/>
+              <p className='hover:bg-[#56585d] transition-all duration-500 px-1 rounded-sm cursor-pointer'>
+                File
+              </p>
+              <p className='hover:bg-[#56585d] transition-all duration-500 px-1 rounded-sm cursor-pointer'>
+                Edit
+              </p>
+              <p className='hover:bg-[#56585d] transition-all duration-500 px-1 rounded-sm cursor-pointer'>
+                Selection
+              </p>
+              <p className='hover:bg-[#56585d] transition-all duration-500 px-1 rounded-sm cursor-pointer'>
+                View
+              </p>
+              <p className='hover:bg-[#56585d] transition-all duration-500 px-1 rounded-sm cursor-pointer'>
+                Run
+              </p>
+            </div>
+            <div className="p-1 flex items-center">
+              <ArrowLeft className='h-4 text-[#6e6f73] hover:text-gray-100 transition-all duration-500 cursor-pointer'/>
+              <ArrowRight className='h-4 text-[#6e6f73] me-1 hover:text-gray-100 transition-all duration-500 cursor-pointer'/>
+              <div className='flex items-center justify-center gap-4 text-gray-100 text-xs h-[30px] bg-[#2c2d37] w-[400px] rounded-md border border-[#55565b] hover:bg-[#393a46] cursor-pointer transition-all duration-500'>
+                <Search className='h-3'/>
+                <p>
+                  Search
+                </p>
+              </div>
+            </div>
+            <div className='flex items-center justify-center gap-4 text-gray-100 text-xs h-[30px]'>
+              <div className='p-0 m-0 h-[45px] hover:bg-[#56585d] transition-all duration-500 px-3 cursor-pointer' onClick={openVscode}>
+                <p className='m-0 text-gray-50 mt-[6px]'>
+                  __
+                </p>
+              </div>
+              <div className='p-0 m-0 h-[45px] hover:bg-[#56585d] transition-all duration-500 px-3 cursor-not-allowed flex items-center'>
+                <p className='m-0 text-gray-50'>
+                  <Layers className='h-5'/>
+                </p>
+              </div>
+              <div className='p-0 m-0 h-[45px] hover:bg-red-600 transition-all duration-500 px-3 cursor-pointer flex items-center' onClick={closeVscode}>
+                <p className='m-0 text-gray-50'>
+                  <X className='h-5'/>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className='w-full bg-[#191a21] h-[100%] pb-[40px] flex m-0'>
+            <div className='w-[3.4%] bg-[#343746] pt-3 px-2 flex flex-col items-center justify-between'>
+              <div className='flex flex-col gap-4 text-[#6272a4] text-lg'>
+                <i className="fas fa-copy cursor-pointer hover:text-gray-100 transition-all duration-500" onClick={openVscodeExplorer}></i>
+                <i className="fas fa-search cursor-pointer hover:text-gray-100 transition-all duration-500" onClick={openVscodeSearch}></i>
+                <i className="fas fa-puzzle-piece cursor-pointer hover:text-gray-100 transition-all duration-500" onClick={openVscodeExtensions}></i>
+                <i className="fas fa-code-branch cursor-pointer hover:text-gray-100 transition-all duration-500"></i>
+              </div>
+              <div className='flex flex-col gap-4 text-[#6272a4] text-lg pb-3'>
+                <i className="far fa-user cursor-pointer hover:text-gray-100 transition-all duration-500"></i>
+                <i className="fas fa-cog cursor-pointer hover:text-gray-100 transition-all duration-500"></i>
+              </div>
+            </div>
+            
+            {/* Explorer */}
+            {isVscodeExplorer ? (
+            <div className='w-[30%] bg-[#21222c] text-gray-100 px-2 p-1 text-sm flex flex-col items-center'>
+              <div className='w-full flex items-center justify-between'>
+                <p className="w-full text-left">
+                  EXPLORER
+                </p>
+                <MoreHorizontal className='h-4 text-gray-100'/>
+              </div>
+            </div>
+            ) : null}
+
+            {/* Search */}
+            {isVscodeSearch ? (
+            <div className='w-[30%] bg-[#21222c] text-gray-100 px-2 p-1 text-sm flex flex-col items-center'>
+              <div className='w-full flex items-center justify-between'>
+                <p className="w-full text-left">
+                  SEARCH
+                </p>
+                <MoreHorizontal className='h-4 text-gray-100'/>
+              </div>
+            </div>
+            ) : null}
+
+            {/* Extensions */}
+            {isVscodeExtensions ? (
+            <div className='w-[30%] bg-[#21222c] text-gray-100 px-2 p-1 text-sm flex flex-col items-center'>
+              <div className='w-full flex items-center justify-between'>
+                <p className="w-full text-left">
+                  EXTENSIONS
+                </p>
+                <MoreHorizontal className='h-4 text-gray-100'/>
+              </div>
+            </div>
+            ) : null}
+
+            <div className='w-[96.6%] bg-[#282a36]'>
+              <div className='w-full m-0 p-0 h-[40px] bg-[#191a21]'>
+                <div className='flex items-center justify-between bg-[#282a36] text-gray-100 w-[170px] h-[40px] rounded-tr-md px-3'>
+                  <div className='flex items-center justify-center text-sm'>
+                    <File className='h-4 w-4 me-1' />
+                    Untitled-1
+                  </div>
+                  <X className='h-3 w-3 cursor-pointer hover:bg-[#56585d] transition-all duration-500 rounded-sm'/>
+                </div>
+              </div>
+              <div className='w-full m-0 p-0 h-[100%] pb-[47px] bg-[#282a36] flex justify-center items-center'>
+              <textarea className="bg-[#282a36] text-gray-100 w-[99%] h-full mx-auto border-none ring-[#282a36] focus:outline-none"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
         ) : null }
 
         {/* Config */}
@@ -417,7 +852,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between m-0 p-0 mt-[55px] h-[90%] pb-[45px] w-full">
+            <div className="flex justify-between m-0 p-0 mt-[40px] h-[90%] pb-[45px] w-full">
               <div className='flex flex-col w-[30%] '>
                 <div className='flex items-center h-[81px]'>
                   <img src='logo.png' className='w-[80px] h-[80px] m-0 p-0'/>
@@ -435,50 +870,46 @@ function App() {
                     placeholder='Search' 
                     className='w-full bg-[#2d2d2d] h-[40px] px-4 rounded-sm text-gray-50 border-b border-gray-50 text-sm'/>
                 </div>
-                <div className='text-gray-50 px-3 text-sm'>
-                  <div className='flex items-center gap-2 mb-1 mt-2 me-2 bg-[#2d2d2d] py-1 rounded-sm transition-all duration-500 cursor-pointer'>
+                <div className='text-gray-50 px-3 text-xs'>
+                  <div className='flex items-center gap-2 mb-[2px] me-2 bg-[#2d2d2d] py-1 rounded-sm transition-all duration-500 cursor-pointer'>
                     <div className='bg-blue-500 h-3 w-[2px] rounded-md'></div>
-                    <Wifi className='h-5'/>
+                    <img src='config_sistema.png' className='w-[20px] h-[20px] rounded-full'/>
                     System
                   </div>
                   <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                    <img src='config_bluetooth.png' className='w-[20px] h-[20px] rounded-full'/>
                     Bluetooth and devices
                   </div>
                   <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                    <img src='config_wifi.png' className='w-[20px] h-[20px] rounded-full'/>
                     Network and Internet
                   </div>
                   <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                  <img src='config_personalization.png' className='w-[20px] h-[20px] rounded-full'/>
                     Personalization
                   </div>
                   <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                  <img src='config_apps.png' className='w-[20px] h-[20px] rounded-full'/>
                     Apps
                   </div>
                   <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                  <img src='config_accounts.png' className='w-[20px] h-[20px] rounded-full'/>
                     Accounts
                   </div>
                   <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                  <img src='config_time.png' className='w-[20px] h-[20px] rounded-full'/>
                     Time and language
                   </div>
                   <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                  <img src='config_games.png' className='w-[20px] h-[20px] rounded-full'/>
                     Games
                   </div>
                   <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
-                    Accessibility 
-                  </div>
-                  <div className='flex items-center gap-2 mb-1 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                  <img src='config_privacy.png' className='w-[20px] h-[20px] rounded-full'/>
                     Privacy and security
                   </div>
                   <div className='flex items-center gap-2 me-2 hover:bg-[#2d2d2d] py-1 ps-1 rounded-sm transition-all duration-500 cursor-pointer'>
-                    <Wifi className='h-5'/>
+                  <img src='config_update.png' className='w-[20px] h-[20px] rounded-full'/>
                     Windows Update
                   </div>
                 </div>
@@ -513,7 +944,11 @@ function App() {
                 <div className="hover:bg-[#eaebee] flex transition-all duration-500 cursor-pointer m-0 p-0  h-[37px] me-[7px] rounded-md">
                   <img src='explorer.png' className='h-5 mt-1 px-[8px]'/>
                 </div>
-                <div className="hover:bg-[#eaebee] flex transition-all duration-500 cursor-pointer m-0 p-[2px] px-[4px] h-[37px] me-[7px] rounded-md">
+                <div className={`hover:bg-[#eaebee] flex transition-all duration-500 cursor-pointer m-0 p-[1px] me-[7px] rounded-md
+                    ${isVscode ? 'bg-[#eaebee] border-b-2 border-blue-600' : 'h-[37px]'}
+                    ${isIconVscode ? 'border-b-2 border-blue-600 h-[37px]' : 'h-[37px]'}
+                  `} 
+                  onClick={openVscode}>
                   <img src='vscode.svg'/>
                 </div>
                 <div 
@@ -544,7 +979,12 @@ function App() {
             <div className="flex text-center items-center mx-auto">
               <div className='text-right me-1 absolute right-0 flex'>
                 <div className="flex justify-between flex-row items-center">
-                  <div className="hover:bg-[#eaebee] flex items-center justify-center transition-all duration-500 cursor-pointer m-0 p-[4px] h-[37px] me-[2px] rounded-md">
+                  <div 
+                    className={`hover:bg-[#eaebee] flex items-center justify-center transition-all duration-500 cursor-pointer m-0 p-[4px] h-[37px] me-[2px] rounded-md
+                    ${isContact ? 'bg-[#eaebee]' : 'h-[37px]'}
+                    `}
+                    onClick={openContact}
+                    >
                     <ChevronUp className='h-5'/>
                   </div>
                   <div 
@@ -558,7 +998,12 @@ function App() {
                     <BatteryFull className='h-4 ms-1'/>
                   </div>     
                 </div>
-                <div className="hover:bg-[#eaebee] transition-all duration-500 cursor-pointer rounded-md px-3">
+                <div 
+                  className={`hover:bg-[#eaebee] transition-all duration-500 cursor-pointer rounded-md px-3
+                  ${isCalendar ? 'bg-[#eaebee]' : ''}
+                  `}
+                  onClick={openCalendar}
+                >
                   <p className='text-xs'>{currentTime}</p>
                   <p className='text-xs'>{currentDate}</p>
                 </div>

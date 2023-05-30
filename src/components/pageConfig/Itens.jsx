@@ -5,33 +5,33 @@ export default function Itens() {
   return (
    <>
     <div className='flex items-center'>
-    <div className='flex items-center'>
-      <img src='background.jpg' className=' aspect-video w-[150px] m-0 p-0 rounded-lg'/>
-      <div className='text-gray-50 ms-2'>
-        <p className='font-bold'>
-          Pc Windowns
-        </p>
-        <p className='font-medium'>
-          Alienware m15 R6
-        </p>
+      <div className='flex items-center'>
+        <img src='background.jpg' className=' aspect-video w-[150px] m-0 p-0 rounded-lg'/>
+        <div className='text-gray-50 ms-2'>
+          <p className='font-bold'>
+            Pc Windowns
+          </p>
+          <p className='font-medium'>
+            Alienware m15 R6
+          </p>
+        </div>
       </div>
-    </div>
-    <div className='flex items-center mx-auto'>
-      <img src='iconWindows.svg' className=' aspect-video w-[60px] m-0 p-0 rounded-lg'/>
-      <div className='text-gray-50'>
-        <p className='font-bold'>
-          Microsoft 365
-        </p>
+      <div className='flex items-center mx-auto hover:bg-[#323232] transition-all duration-500 cursor-pointer h-[60px] px-2 rounded-md'>
+        <img src='config_microsoft_365.png' className='me-2'/>
+        <div className='text-gray-50'>
+          <p className='font-bold'>
+            Microsoft 365
+          </p>
+        </div>
       </div>
-    </div>
-    <div className='flex items-center mx-auto'>
-      <img src='iconWindows.svg' className=' aspect-video w-[60px] m-0 p-0 rounded-lg'/>
-      <div className='text-gray-50'>
-        <p className='font-bold'>
-          Microsoft 365
-        </p>
+      <div className='flex items-center mx-auto hover:bg-[#323232] transition-all duration-500 cursor-pointer h-[60px] px-2 rounded-md'>
+        <img src='config_update.png' className='me-2'/>
+        <div className='text-gray-50'>
+          <p className='font-bold'>
+            Windows Update
+          </p>
+        </div>
       </div>
-    </div>
     </div>
     <div className='flex items-center me-3 mt-5 px-3 pb-2 rounded-lg text-gray-50 bg-[#2b2b2b] hover:bg-[#323232] transition-all duration-500 cursor-pointer'>
       <div className='flex items-center'>
