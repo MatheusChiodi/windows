@@ -2,7 +2,7 @@ import { ChevronDown, File, FilePlus2, Save, X } from "lucide-react";
 import { CopyX } from "lucide-react";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 
-export default function VsCodeExplorer() {
+export default function Explorer() {
   return (
     <>
       <div className="w-[30%] bg-[#21222c] text-gray-100 text-sm flex flex-col items-center">
