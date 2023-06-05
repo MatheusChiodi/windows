@@ -1,7 +1,6 @@
 import { ChevronDown, File, FilePlus2, Save, X } from "lucide-react";
 import { CopyX } from "lucide-react";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
-import { useState } from "react";
 
 export default function VsCodeExplorer() {
   return (
