@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { File, X } from "lucide-react";
-import VsCodeExplorer from "./explorer/vscodeExplorer";
+import VsCodeExplorer from "./explorer/vsCodeExplorer";
 
 export default function Vscode() {
   const [isVscodeExplorer, setVscodeExplorer] = useState(false);
