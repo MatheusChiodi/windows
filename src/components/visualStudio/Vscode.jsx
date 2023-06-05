@@ -1,7 +1,7 @@
 import { useState } from "react";
 import VsCodeExplorer from "./explorer/vscodeExplorer";
 import VsCodeSearch from "./search/vscodeSearch";
-import VsCodeExtensions from "./extensions/vscodeExtensions";
+import VsCodeExtensions from "./ext/vscodeExtensions";
 import { File, X } from "lucide-react";
 
 export default function Vscode() {

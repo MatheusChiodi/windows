@@ -1,5 +1,4 @@
 import {
-  File,
   ArrowDownToLine,
   ArrowLeft,
   ArrowRight,
@@ -33,16 +32,12 @@ import {
   Volume2,
   Wifi,
   X,
-  MoreHorizontal,
   ChevronDown,
   ArrowUp,
-  Save,
-  CopyX,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { getDaysInMonth } from 'date-fns';
 import Itens from './components/pageConfig/Itens';
-import { FilePlus2 } from 'lucide-react';
 import Vscode from './components/visualStudio/Vscode';
 
 function App() {
