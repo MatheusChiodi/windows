@@ -1,7 +1,4 @@
 import { useState } from "react";
-import VsCodeExplorer from "./explorer/vscodeExplorer";
-import VsCodeSearch from "./search/vscodeSearch";
-import VsCodeExtensions from "./ext/vscodeExtensions";
 import { File, X } from "lucide-react";
 
 export default function Vscode() {
@@ -74,17 +71,17 @@ export default function Vscode() {
 
         {/* Explorer */}
         {isVscodeExplorer ? (
-         <VsCodeExplorer />
+         <></>
         ) : null}
 
         {/* Search */}
         {isVscodeSearch ? (
-          <VsCodeSearch />
+          <></>
         ) : null}
 
         {/* Extensions */}
         {isVscodeExtensions ? (
-          <VsCodeExtensions />
+          <></>
         ) : null}
 
         <div className="w-[96.6%] bg-[#282a36]">
