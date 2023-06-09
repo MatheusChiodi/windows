@@ -41,6 +41,7 @@ import Calendar from './components/Calendar';
 import Explorer from './components/Explorer';
 import { set } from 'date-fns';
 import Contact from './components/Contact';
+import ConfigPower from './components/ConfigPower';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(getFormattedTime());
@@ -546,24 +547,7 @@ function App() {
 
               {/* Config Power*/}
               {isConfigPower ? (
-                <div className="bg-[#eaebee] absolute bottom-[110px] ml-[305px] w-[135px] text-sm rounded-md flex flex-col text-gray-600">
-                  <div className="flex items-center border-b-[1px] border-gray-400 hover:bg-[#e3e5e8] transition-all duration-500 cursor-pointer">
-                    <Settings className="h-3" />
-                    <p>Input Options</p>
-                  </div>
-                  <div className="flex items-center hover:bg-[#e3e5e8] transition-all duration-500 cursor-pointer">
-                    <Moon className="h-3" />
-                    <p>Suspend</p>
-                  </div>
-                  <div className="flex items-center hover:bg-[#e3e5e8] transition-all duration-500 cursor-pointer">
-                    <Power className="h-3" />
-                    <p>To switch off</p>
-                  </div>
-                  <div className="flex items-center hover:bg-[#e3e5e8] transition-all duration-500 cursor-pointer">
-                    <RotateCcw className="h-3" />
-                    <p>Restart</p>
-                  </div>
-                </div>
+                <ConfigPower />
               ) : null}
             </div>
           </div>
