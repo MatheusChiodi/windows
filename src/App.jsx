@@ -32,14 +32,14 @@ import {
   Volume2,
   Wifi,
   X,
-  ChevronDown,
-  ArrowUp,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 import Vscode from './components/visualStudio/Vscode';
 import PageConfig from './components/pageConfig/Page';
 import Calendar from './components/Calendar';
+import Explorer from './components/Explorer';
+import { set } from 'date-fns';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(getFormattedTime());
@@ -60,6 +60,7 @@ function App() {
   const [isIconEdge, setIconEdge] = useState(false);
   const [isIconConfig, setIconConfig] = useState(false);
   const [isIconVscode, setIconVscode] = useState(false);
+  const [isIconExplorer, setIconExplorer] = useState(false);
 
   const [isPage1, setPage1] = useState(true);
   const [isPage2, setPage2] = useState(false);
@@ -211,6 +212,9 @@ function App() {
       setConfigWindows(false);
       setVscode(false);
       setSearch(false);
+      setCalendar(false);
+      setContact(false);
+      setExplorer(false);
     }
   }
 
@@ -248,6 +252,9 @@ function App() {
       setEdge(false);
       setVscode(false);
       setSearch(false);
+      setCalendar(false);
+      setContact(false);
+      setExplorer(false);
     }
   }
 
@@ -265,6 +272,7 @@ function App() {
       setExplorer(false);
     } else {
       setExplorer(true);
+      setIconExplorer(true);
       setCalendar(false);
       setContact(false);
       setWindows(false);
@@ -274,6 +282,14 @@ function App() {
       setSearch(false);
       setEdge(false);
       setVscode(false);
+    }
+  }
+
+  //-- Função para fechar o Explorer
+  function closeExplorer() {
+    if (isExplorer) {
+      setExplorer(false);
+      setIconExplorer(false);
     }
   }
 
@@ -307,6 +323,9 @@ function App() {
       setEdge(false);
       setConfig(false);
       setSearch(false);
+      setCalendar(false);
+      setContact(false);
+      setExplorer(false);
     }
   }
 
@@ -1075,7 +1094,7 @@ function App() {
               <div className="flex items-center m-0 p-0">
                 <div
                   className="p-0 m-0 h-[45px] hover:bg-[#56585d] transition-all duration-500 px-3 cursor-pointer"
-                  onClick={openConfig}
+                  onClick={openExplorer}
                 >
                   <p className="m-0 text-gray-50">__</p>
                 </div>
@@ -1086,7 +1105,7 @@ function App() {
                 </div>
                 <div
                   className="p-0 m-0 h-[45px] hover:bg-red-600 transition-all duration-500 px-3 cursor-pointer flex items-center"
-                  onClick={closeConfig}
+                  onClick={closeExplorer}
                 >
                   <p className="m-0 text-gray-50">
                     <X className="h-5" />
@@ -1094,77 +1113,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between items-center m-0 p-0 w-full">
-              <div className="flex items-center bg-[#2c2c2c] text-gray-100 h-[50px] w-full border-b-2 border-[#3a3a3a]"></div>
-            </div>
-            <div className="flex justify-between items-center m-0 p-0 w-full">
-              <div className="flex items-center bg-[#191919] text-gray-100 h-[56px] w-full">
-                <div className="flex items-center justify-between w-full">
-                  <ArrowLeft className="h-4 text-gray-300 ms-1 me-1 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                  <ArrowRight className="h-4 text-gray-300 me-1 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                  <ChevronDown className="h-4 text-gray-300 me-1 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                  <ArrowUp className="h-4 text-gray-300 me-[20px] hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                  <div className="flex items-center justify-between border border-[#535353] w-[75%] px-2 p-[1px]">
-                    <div className="flex items-center">
-                      <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <ChevronRight className="h-3 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <p>Início</p>
-                    </div>
-                    <div className="flex items-center">
-                      <ChevronDown className="h-3 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <RotateCcw className="h-3 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                    </div>
-                  </div>
-                  <div className="flex items-center border border-[#535353] w-[12%] me-[10px] px-2 p-[1px] overflow-hidden">
-                    <div className="flex items-center justify-between w-full text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer">
-                      <p>Pesquisar</p>
-                      <Search className="h-3" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-between items-center m-0 p-0 w-full">
-              <div className="flex items-center justify-between bg-[#191919] text-gray-100 w-full">
-                <div className="w-[10%] overflow-y-scroll h-[500px]">
-                  <div className="flex items-center justify-center h-[30px]">
-                    <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                    <p>Inicio</p>
-                  </div>
-
-                  <div className="fle flex-col items-center justify-center h-[30px] mt-3">
-                    <div className="flex items-center justify-center mb-1">
-                      <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <p>Inicio</p>
-                    </div>
-                    <div className="flex items-center justify-center mb-1">
-                      <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <p>Inicio</p>
-                    </div>
-                    <div className="flex items-center justify-center mb-1">
-                      <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <p>Inicio</p>
-                    </div>
-                    <div className="flex items-center justify-center mb-1">
-                      <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <p>Inicio</p>
-                    </div>
-                    <div className="flex items-center justify-center mb-1">
-                      <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <p>Inicio</p>
-                    </div>
-                    <div className="flex items-center justify-center mb-1">
-                      <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <p>Inicio</p>
-                    </div>
-                    <div className="flex items-center justify-center mb-1">
-                      <Home className="h-4 text-gray-300 hover:text-gray-50 transition-all duration-500 cursor-pointer" />
-                      <p>Inicio</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Explorer />
           </div>
         ) : null}
 
@@ -1192,6 +1141,11 @@ function App() {
                   ${
                     isExplorer
                       ? 'bg-[#eaebee] border-b-2 border-blue-600'
+                      : 'h-[37px]'
+                  }
+                  ${
+                    isIconExplorer
+                      ? 'border-b-2 border-blue-600 h-[37px]'
                       : 'h-[37px]'
                   }
                   `}
