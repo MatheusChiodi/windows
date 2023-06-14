@@ -10,19 +10,15 @@ import {
   ChevronRight,
   ChevronUp,
   Copy,
-  Github,
   Home,
   Layers,
   Layout,
-  Linkedin,
   LockIcon,
-  Moon,
   Pencil,
   PersonStanding,
   Plane,
   Plus,
   Power,
-  RotateCcw,
   RotateCw,
   Search,
   Settings,
@@ -39,9 +35,9 @@ import Vscode from './components/visualStudio/Vscode';
 import PageConfig from './components/pageConfig/Page';
 import Calendar from './components/Calendar';
 import Explorer from './components/Explorer';
-import { set } from 'date-fns';
 import Contact from './components/Contact';
 import ConfigPower from './components/ConfigPower';
+import Whatsapp from './components/Whatsapp';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(getFormattedTime());
@@ -54,6 +50,7 @@ function App() {
   const [isCalendar, setCalendar] = useState(false);
   const [isContact, setContact] = useState(false);
   const [isVscode, setVscode] = useState(false);
+  const [isWhatsapp, setWhatsapp] = useState(false);
   const [isSearch, setSearch] = useState(false);
   const [isExplorer, setExplorer] = useState(false);
   const [isvolume, setVolume] = useState(50);
@@ -63,6 +60,7 @@ function App() {
   const [isIconConfig, setIconConfig] = useState(false);
   const [isIconVscode, setIconVscode] = useState(false);
   const [isIconExplorer, setIconExplorer] = useState(false);
+  const [isIconWhatsapp, setIconWhatsapp] = useState(false);
 
   const [isPage1, setPage1] = useState(true);
   const [isPage2, setPage2] = useState(false);
@@ -217,6 +215,7 @@ function App() {
       setCalendar(false);
       setContact(false);
       setExplorer(false);
+      setWhatsapp(false);
     }
   }
 
@@ -257,6 +256,7 @@ function App() {
       setCalendar(false);
       setContact(false);
       setExplorer(false);
+      setWhatsapp(false);
     }
   }
 
@@ -284,6 +284,7 @@ function App() {
       setSearch(false);
       setEdge(false);
       setVscode(false);
+      setWhatsapp(false);
     }
   }
 
@@ -328,6 +329,7 @@ function App() {
       setCalendar(false);
       setContact(false);
       setExplorer(false);
+      setWhatsapp(false);
     }
   }
 
@@ -338,6 +340,38 @@ function App() {
       setIconVscode(false);
     }
   }
+
+  //-- Função para abrir o Whatsapp
+  function openWhatsapp() {
+    if (isWhatsapp) {
+      setWhatsapp(false);
+    } else {
+      setWhatsapp(true);
+      setIconWhatsapp(true);
+
+      setWindows(false);
+      setConfigPower(false);
+      setConfigWindows(false);
+      setContact(false);
+      setCalendar(false);
+      setVscode(false);
+      setEdge(false);
+      setConfig(false);
+      setSearch(false);
+      setCalendar(false);
+      setContact(false);
+      setExplorer(false);
+    }
+  }
+
+  //-- Função para fechar o Whatsapp
+  function closeWhatsapp() {
+    if (isWhatsapp) {
+      setWhatsapp(false);
+      setIconWhatsapp(false);
+    }
+  }
+      
 
   //-- Função para abrir a página 1
   function openPage1() {
@@ -515,6 +549,13 @@ function App() {
                   >
                     <img src="vscode.svg" className="h-[30px] w-[30px]" />
                     <p className="text-xs text-center">Visual Studio Code</p>
+                  </div>
+                  <div
+                    className="flex flex-col items-center justify-center h-[85px] w-[100px] hover:bg-[#ffffff5b] transition-all duration-500 p-1 rounded-sm cursor-pointer"
+                    onClick={openWhatsapp}
+                  >
+                    <img src="iconWhatsapp.svg" className="h-[30px] w-[30px]" />
+                    <p className="text-xs text-center">Whatsapp</p>
                   </div>
                 </div>
               </div>
@@ -1008,6 +1049,43 @@ function App() {
           </div>
         ) : null}
 
+        {/* Whatsapp */}
+        {isWhatsapp ? (
+          <div className="justify-center items-center h-[100%] pb-[45px] w-full bg-[#202020] m-0">
+            <div className="flex justify-between items-center m-0 p-0">
+              <div className="flex items-center justify-center gap-1 text-gray-100 text-xs h-[30px] p-1">
+                <img src="iconWhatsapp.svg" className="w-[30px] h-[30px]" />
+                <p>
+                Whatsapp
+                </p>
+              </div>
+              <div className="flex items-center justify-center text-gray-100 text-xs h-[30px]">
+                <div
+                  className="p-0 m-0 h-[45px] hover:bg-[#56585d] transition-all duration-500 cursor-pointer"
+                  onClick={openWhatsapp}
+                >
+                  <p className="m-0 text-gray-50 mt-[6px] px-3">__</p>
+                </div>
+                <div className="p-0 m-0 h-[45px] hover:bg-[#56585d] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 text-gray-50 px-3">
+                    <Layers className="h-5" />
+                  </p>
+                </div>
+                <div
+                  className="p-0 m-0 h-[45px] hover:bg-red-600 transition-all duration-500 cursor-pointer flex items-center"
+                  onClick={closeWhatsapp}
+                >
+                  <p className="m-0 text-gray-50 px-3">
+                    <X className="h-5" />
+                  </p>
+                </div>
+              </div>
+            </div>
+            <Whatsapp />
+          </div>
+        ) : null}
+
+
         {/* Config */}
         {isConfig ? (
           <div className="justify-center items-center h-[100%] pb-[45px] w-full bg-[#202020] m-0 p-0">
@@ -1172,6 +1250,26 @@ function App() {
                   >
                     <Settings className="h-5" />
                   </div>
+                ) : null}
+
+                {isIconWhatsapp ? (
+                <div
+                  className={`hover:bg-[#eaebee] flex transition-all duration-500 cursor-pointer m-0 p-0 me-[7px] rounded-md
+                  ${
+                    isWhatsapp
+                      ? 'bg-[#eaebee] border-b-2 border-blue-600'
+                      : 'h-[37px]'
+                  }
+                  ${
+                    isIconWhatsapp
+                      ? 'border-b-2 border-blue-600 h-[37px]'
+                      : 'h-[37px]'
+                  }
+                  `}
+                  onClick={openWhatsapp}
+                >
+                  <img src="iconWhatsapp.svg"/>
+                </div>
                 ) : null}
               </div>
             </div>
