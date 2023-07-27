@@ -147,7 +147,9 @@ function App() {
     setBrightness(newBrightness);
     changeBrightness();
     function changeBrightness() {
-      document.getElementById('body').style.filter = `brightness(${newBrightness}%)`;
+      document.getElementById(
+        'body'
+      ).style.filter = `brightness(${newBrightness}%)`;
       // deixar o background com o filtro de brilho
     }
   };
@@ -371,7 +373,6 @@ function App() {
       setIconWhatsapp(false);
     }
   }
-      
 
   //-- Função para abrir a página 1
   function openPage1() {
@@ -587,9 +588,7 @@ function App() {
               </div>
 
               {/* Config Power*/}
-              {isConfigPower ? (
-                <ConfigPower />
-              ) : null}
+              {isConfigPower ? <ConfigPower /> : null}
             </div>
           </div>
         ) : null}
@@ -743,14 +742,10 @@ function App() {
         ) : null}
 
         {/* Calendario */}
-        {isCalendar ? (
-          <Calendar />
-        ) : null}
+        {isCalendar ? <Calendar /> : null}
 
         {/* Contato */}
-        {isContact ? (
-          <Contact />
-        ) : null}
+        {isContact ? <Contact /> : null}
 
         {/* Edge */}
         {isEdge ? (
@@ -1055,9 +1050,7 @@ function App() {
             <div className="flex justify-between items-center m-0 p-0">
               <div className="flex items-center justify-center gap-1 text-gray-100 text-xs h-[30px] p-1">
                 <img src="iconWhatsapp.svg" className="w-[30px] h-[30px]" />
-                <p>
-                Whatsapp
-                </p>
+                <p>Whatsapp</p>
               </div>
               <div className="flex items-center justify-center text-gray-100 text-xs h-[30px]">
                 <div
@@ -1084,7 +1077,6 @@ function App() {
             <Whatsapp />
           </div>
         ) : null}
-
 
         {/* Config */}
         {isConfig ? (
@@ -1191,7 +1183,7 @@ function App() {
                       : 'h-[37px]'
                   }
                   `}
-                  onClick={openExplorer}
+                  //onClick={openExplorer}
                 >
                   <img src="explorer.png" className="h-5 mt-1 px-[8px]" />
                 </div>
@@ -1253,8 +1245,8 @@ function App() {
                 ) : null}
 
                 {isIconWhatsapp ? (
-                <div
-                  className={`hover:bg-[#eaebee] flex transition-all duration-500 cursor-pointer m-0 p-0 me-[7px] rounded-md
+                  <div
+                    className={`hover:bg-[#eaebee] flex transition-all duration-500 cursor-pointer m-0 p-0 me-[7px] rounded-md
                   ${
                     isWhatsapp
                       ? 'bg-[#eaebee] border-b-2 border-blue-600'
@@ -1266,10 +1258,10 @@ function App() {
                       : 'h-[37px]'
                   }
                   `}
-                  onClick={openWhatsapp}
-                >
-                  <img src="iconWhatsapp.svg"/>
-                </div>
+                    onClick={openWhatsapp}
+                  >
+                    <img src="iconWhatsapp.svg" />
+                  </div>
                 ) : null}
               </div>
             </div>
