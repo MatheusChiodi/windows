@@ -1,4 +1,5 @@
 import {
+  ArrowBigDownDash,
   ArrowDownToLine,
   ArrowLeft,
   ArrowRight,
@@ -6,25 +7,45 @@ import {
   BatteryCharging,
   BatteryFull,
   Bluetooth,
+  BookOpen,
   Cast,
+  ChevronDown,
+  ChevronLeft,
   ChevronRight,
   ChevronUp,
+  ClipboardCopy,
   Copy,
+  FileEdit,
   Home,
   Layers,
   Layout,
+  LayoutGrid,
   LockIcon,
+  MessageSquare,
+  Minus,
+  Monitor,
+  MonitorDown,
+  MonitorOff,
+  MonitorUp,
+  Paintbrush,
+  PanelRightOpen,
+  PanelTop,
   Pencil,
   PersonStanding,
   Plane,
   Plus,
   Power,
+  RotateCcw,
   RotateCw,
+  Save,
+  Scissors,
+  ScrollText,
   Search,
   Settings,
   ShieldAlert,
   Star,
   SunMedium,
+  Undo2,
   Volume2,
   Wifi,
   X,
@@ -38,6 +59,7 @@ import Explorer from './components/Explorer';
 import Contact from './components/Contact';
 import ConfigPower from './components/ConfigPower';
 import Whatsapp from './components/Whatsapp';
+import { set } from 'date-fns';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(getFormattedTime());
@@ -51,6 +73,8 @@ function App() {
   const [isContact, setContact] = useState(false);
   const [isVscode, setVscode] = useState(false);
   const [isWhatsapp, setWhatsapp] = useState(false);
+  const [isPowerPoint, setPowerPoint] = useState(false);
+  const [isPresentation, setPresentation] = useState(false);
   const [isSearch, setSearch] = useState(false);
   const [isExplorer, setExplorer] = useState(false);
   const [isvolume, setVolume] = useState(50);
@@ -61,6 +85,7 @@ function App() {
   const [isIconVscode, setIconVscode] = useState(false);
   const [isIconExplorer, setIconExplorer] = useState(false);
   const [isIconWhatsapp, setIconWhatsapp] = useState(false);
+  const [isIconPowerPoint, setIconPowerPoint] = useState(false);
 
   const [isPage1, setPage1] = useState(true);
   const [isPage2, setPage2] = useState(false);
@@ -71,6 +96,99 @@ function App() {
   const [isUrl2, setUrl2] = useState(false);
   const [isUrl3, setUrl3] = useState(false);
   const [isUrl4, setUrl4] = useState(false);
+
+  const [isSlide, setSlide] = useState(1);
+  const [usePng, setUsePng] = useState(false);
+
+  const stylesSlideMap = {
+    1: {
+      gif: {
+        backgroundImage: "url('/slides/Inicio.gif')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        outline: 'none',
+        zIndex: 100,
+      },
+      png: {
+        backgroundImage: "url('/slides/Inicio.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        outline: 'none',
+        zIndex: 100,
+      },
+    },
+    2: {
+      gif: {
+        backgroundImage: "url('/slides/Jornada.gif')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        outline: 'none',
+        zIndex: 100,
+      },
+      png: {
+        backgroundImage: "url('/slides/Jornada.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        outline: 'none',
+        zIndex: 100,
+      },
+    },
+    3: {
+      gif: {
+        backgroundImage: "url('/slides/App.gif')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        outline: 'none',
+        zIndex: 100,
+      },
+      png: {
+        backgroundImage: "url('/slides/App.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        outline: 'none',
+        zIndex: 100,
+      },
+    },
+    4: {
+      gif: {
+        backgroundImage: "url('/slides/Ideia.gif')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        outline: 'none',
+        zIndex: 100,
+      },
+      png: {
+        backgroundImage: "url('/slides/Ideia.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        outline: 'none',
+        zIndex: 100,
+      },
+    },
+  };
+
+  const styleSlide = stylesSlideMap[isSlide]
+    ? usePng
+      ? stylesSlideMap[isSlide].png
+      : stylesSlideMap[isSlide].gif
+    : {};
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setUsePng(true);
+    }, 3500);
+
+    return () => clearTimeout(timer);
+  }, [isSlide]);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -218,6 +336,7 @@ function App() {
       setContact(false);
       setExplorer(false);
       setWhatsapp(false);
+      setPowerPoint(false);
     }
   }
 
@@ -259,6 +378,7 @@ function App() {
       setContact(false);
       setExplorer(false);
       setWhatsapp(false);
+      setPowerPoint(false);
     }
   }
 
@@ -287,6 +407,7 @@ function App() {
       setEdge(false);
       setVscode(false);
       setWhatsapp(false);
+      setPowerPoint(false);
     }
   }
 
@@ -332,6 +453,7 @@ function App() {
       setContact(false);
       setExplorer(false);
       setWhatsapp(false);
+      setPowerPoint(false);
     }
   }
 
@@ -363,6 +485,7 @@ function App() {
       setCalendar(false);
       setContact(false);
       setExplorer(false);
+      setPowerPoint(false);
     }
   }
 
@@ -371,6 +494,104 @@ function App() {
     if (isWhatsapp) {
       setWhatsapp(false);
       setIconWhatsapp(false);
+    }
+  }
+
+  //-- Função para abrir o Power Point
+  function openPowerPoint() {
+    if (isPowerPoint) {
+      setPowerPoint(false);
+    } else {
+      setPowerPoint(true);
+      setIconPowerPoint(true);
+
+      setWindows(false);
+      setConfigPower(false);
+      setConfigWindows(false);
+      setContact(false);
+      setCalendar(false);
+      setVscode(false);
+      setEdge(false);
+      setConfig(false);
+      setSearch(false);
+      setCalendar(false);
+      setContact(false);
+      setExplorer(false);
+    }
+  }
+
+  //-- Função para fechar o Power Point
+  function closePowerPoint() {
+    if (isPowerPoint) {
+      setPowerPoint(false);
+      setIconPowerPoint(false);
+    }
+  }
+
+  //-- Função para abrir o Presentation
+  function openPresentation() {
+    if (isPresentation) {
+      setPresentation(false);
+      setPowerPoint(true);
+      setSlide(1);
+    } else {
+      setPresentation(true);
+      setSlide(1);
+
+      setPowerPoint(false);
+
+      setWindows(false);
+      setConfigPower(false);
+      setConfigWindows(false);
+      setContact(false);
+      setCalendar(false);
+      setVscode(false);
+      setEdge(false);
+      setConfig(false);
+      setSearch(false);
+      setCalendar(false);
+      setContact(false);
+      setExplorer(false);
+    }
+  }
+
+  //-- Função para fechar o Presentation
+  function closePresentation() {
+    if (isPresentation) {
+      setPresentation(false);
+      setPowerPoint(true);
+    }
+  }
+
+  //- Função para proximo slide
+  function nextSlide() {
+    if (isSlide === 1) {
+      setSlide(2);
+      setUsePng(false);
+    }
+    if (isSlide === 2) {
+      setSlide(3);
+      setUsePng(false);
+    }
+    if (isSlide === 3) {
+      setSlide(4);
+      setUsePng(false);
+    }
+  }
+
+  //- Função para slide anterior
+  function previousSlide() {
+    if (isSlide === 2) {
+      setSlide(1);
+      setUsePng(false);
+    }
+    if (isSlide === 3) {
+      setSlide(2);
+      setUsePng(false);
+    }
+    if (isSlide === 4) {
+      setSlide(3);
+      setUsePng(false);
     }
   }
 
@@ -518,7 +739,24 @@ function App() {
 
   return (
     <>
+      {/* Desktop */}
       <div className="flex h-screen w-full m-0 p-0">
+        {/* Mobile */}
+        <div
+          className="h-screen w-full m-0 p-0 absolute block lg:hidden"
+          style={{
+            zIndex: 100,
+            backgroundColor: '#F8F8F2',
+          }}
+        >
+          <div className="flex flex-col items-center justify-center h-screen w-full m-0 p-3 ">
+            <img src="logo.png" className="h-[50px] w-[50px]" />
+            <p className="text-center text-lg font-bold text-[#44475a]">
+              O sistema só pode ser visualizado em Desktop
+            </p>
+          </div>
+        </div>
+
         {/* Menu Iniciar */}
         {isWindows ? (
           <div className="absolute justify-center items-center h-[100%] pb-[48px] pt-[5%] w-full">
@@ -557,6 +795,13 @@ function App() {
                   >
                     <img src="iconWhatsapp.svg" className="h-[30px] w-[30px]" />
                     <p className="text-xs text-center">Whatsapp</p>
+                  </div>
+                  <div
+                    className="flex flex-col items-center justify-center h-[85px] w-[100px] hover:bg-[#ffffff5b] transition-all duration-500 p-1 rounded-sm cursor-pointer"
+                    onClick={openPowerPoint}
+                  >
+                    <img src="PowerPoint.png" className="h-[30px] w-[30px]" />
+                    <p className="text-xs text-center">PowerPoint</p>
                   </div>
                 </div>
               </div>
@@ -1078,6 +1323,322 @@ function App() {
           </div>
         ) : null}
 
+        {/* PowerPoint */}
+        {isPowerPoint ? (
+          <div className="flex flex-col h-full w-full bg-gray-200 m-0 pb-[45px]">
+            <div className="w-full h-16 max-h-20 bg-[#b7472a] flex flex-wrap justify-between">
+              <div className="w-full flex justify-between">
+                <div className="flex items-center justify-center text-gray-100 text-xs sm:text-sm md:text-base h-[30px]">
+                  <div className="ml-2 p-0 m-0 h-[45px] hover:bg-[#a92b1a] transition-all duration-500 cursor-pointer">
+                    <p className="m-0 text-[#fdc9b5] mt-[11.5px] px-3">
+                      <Save className="h-5" />
+                    </p>
+                  </div>
+                  <div className="p-0 m-0 h-[45px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                    <p className="m-0 text-[#c7725c] px-2 flex items-center mt-1">
+                      <Undo2 className="h-5" />
+                      <ChevronDown className="h-3" />
+                    </p>
+                  </div>
+                  <div className="p-0 m-0 h-[45px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                    <p className="m-0 text-[#c7725c] px-3 flex items-center mt-1">
+                      <RotateCcw className="h-5" />
+                    </p>
+                  </div>
+                  <div
+                    className="p-0 m-0 h-[45px] hover:bg-[#a92b1a] transition-all duration-500 cursor-pointer flex items-center"
+                    onClick={openPresentation}
+                  >
+                    <p className="m-0 text-[#fdc9b5] px-3 flex items-center mt-1">
+                      <MonitorDown className="h-5" />
+                    </p>
+                  </div>
+                  <div className="p-0 m-0 h-[45px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                    <p className="m-0 text-[#fdc9b5] px-3 flex items-center mt-1">
+                      <ArrowBigDownDash className="h-3" />
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center mt-1">
+                  <p className="text-xs sm:text-sm md:text-base text-[#fdc9b5]">
+                    Apresentação Escola Leticia
+                  </p>
+                </div>
+
+                <div className="flex">
+                  <div className="h-[40px] flex items-center justify-center hover:bg-[#a92b1a] transition-all duration-500 cursor-pointer mr-1 px-1">
+                    <img src="logo.png" className="w-5 h-5" />
+                    <p className="text-xs sm:text-sm md:text-base text-[#fdc9b5]">
+                      Matheus Chiodi
+                    </p>
+                  </div>
+                  <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                    <p className="m-0 text-[#fdc9b5] px-3 flex items-center">
+                      <MonitorUp className="h-4" />
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-center text-gray-100 text-xs h-[30px]">
+                    <div
+                      className="p-0 m-0 h-[45px] hover:bg-[#a92b1a] transition-all duration-500 cursor-pointer"
+                      onClick={openPowerPoint}
+                    >
+                      <p className="m-0 text-gray-50 mt-[8px] px-3">__</p>
+                    </div>
+                    <div className="p-0 m-0 h-[45px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                      <p className="m-0 text-gray-50 px-3 mt-1">
+                        <Layers className="h-5" />
+                      </p>
+                    </div>
+                    <div
+                      className="p-0 m-0 h-[45px] hover:bg-red-600 transition-all duration-500 cursor-pointer flex items-center"
+                      onClick={closePowerPoint}
+                    >
+                      <p className="m-0 text-gray-50 px-3 mt-1">
+                        <X className="h-5" />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-full flex flex-wrap mt-[2px]">
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Arquivo
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] bg-[#f3f3f3] transition-all duration-500 flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[14px] xl:text-sm">
+                    Página Inicial
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Inserir
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Desenhar
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Desing
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Transições
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Animações
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Apresentação de Slides
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Gravar
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Revisão
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Exibir
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Ajuda
+                  </p>
+                </div>
+                <div className="p-0 m-0 h-[40px] hover:bg-[#a92b1a] transition-all duration-500 cursor-not-allowed flex items-center">
+                  <p className="m-0 px-3 flex items-center lg:text-[12px] xl:text-sm text-[#fdc9b5]">
+                    Diga-me
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full lg:h-[100px] xl:h-20 bg-gray-300 flex">
+              <img src="PowerPoint_PaginaInicial.png" />
+            </div>
+
+            <div className="flex-grow bg-gray-200 flex lg:h-[60%] xl:h-[64%]">
+              <div className="w-1/6 border-r-2 border-gray-300 p-4 overflow-y-auto">
+                <div className="flex">
+                  <p className="mr-2">1</p>
+                  <div
+                    className="border-2 border-[#a92b1a] w-[90%] h-[100px] hover:border-[4px]  transition-all cursor-pointer"
+                    style={{
+                      backgroundImage: "url('/slides/Inicio.png')",
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      outline: 'none',
+                    }}
+                  ></div>
+                </div>
+                <div className="flex mt-4">
+                  <p className="mr-2">2</p>
+                  <div
+                    className="border-2 border-[#d2d2d2] w-[90%] h-[100px] hover:border-[3px] hover:border-[#a92b1a] transition-all duration-300 cursor-not-allowed"
+                    style={{
+                      backgroundImage: "url('/slides/Jornada.png')",
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      outline: 'none',
+                    }}
+                  ></div>
+                </div>
+                <div className="flex mt-4">
+                  <p className="mr-2">3</p>
+                  <div
+                    className="border-2 border-[#d2d2d2] w-[90%] h-[100px] hover:border-[3px] hover:border-[#a92b1a] transition-all duration-300 cursor-not-allowed"
+                    style={{
+                      backgroundImage: "url('/slides/App.png')",
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      outline: 'none',
+                    }}
+                  ></div>
+                </div>
+                <div className="flex mt-4">
+                  <p className="mr-2">4</p>
+                  <div
+                    className="border-2 border-[#d2d2d2] w-[90%] h-[100px] hover:border-[3px] hover:border-[#a92b1a] transition-all duration-300 cursor-not-allowed"
+                    style={{
+                      backgroundImage: "url('/slides/Ideia.png')",
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      outline: 'none',
+                    }}
+                  ></div>
+                </div>
+              </div>
+              <div className="w-5/6 flex justify-center items-center">
+                <div
+                  className="w-4/5 h-[90%] border-2 border-gray-300"
+                  style={{
+                    backgroundImage: "url('/slides/Inicio.png')",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                ></div>
+              </div>
+            </div>
+            <div className="w-full bg-[#f3f3f3] border-t-2 border-[#d2d2d2] h-7 flex justify-between">
+              <div className="flex items-center justify-center">
+                <p className="text-[#262626] lg:text-[10px] xl:text-[16px] mx-3">
+                  Slide 1 de 4
+                </p>
+                <div className="p-0 m-0 h-[100%] hover:bg-[#d2d2d2] transition-all duration-500 cursor-not-allowed flex items-center mx-2">
+                  <p className="m-0 text-[#747474] px-2 flex items-center">
+                    <FileEdit className="lg:h-3 xl:h-4" />
+                  </p>
+                </div>
+                <p className="text-[#262626] lg:text-[10px] xl:text-[16px] mx-3">
+                  Português (Brasil)
+                </p>
+                <div className="p-0 m-0 h-[100%] hover:bg-[#d2d2d2] transition-all duration-500 cursor-not-allowed flex items-center mx-2">
+                  <p className="text-[#262626] lg:text-[10px] xl:text-[16px] mx-3 flex items-center">
+                    <FileEdit className="lg:h-3 xl:h-4" />
+                    Acessibilidade: investigar
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center m-0 p-0">
+                <div className="flex items-center justify-start">
+                  {[
+                    'Anotacões',
+                    'Exibir Configurações',
+                    'Comentarios',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '70%',
+                  ].map((text, index) => (
+                    <div
+                      key={index}
+                      className="p-0 m-0 h-[39px] hover:bg-[#d2d2d2] transition-all duration-500 cursor-not-allowed flex items-center my-1"
+                    >
+                      <p className="m-0 text-[#747474] px-2 flex items-center lg:text-[10px] xl:text-[16px]">
+                        {index === 0 && (
+                          <ScrollText className="lg:h-3 xl:h-4" />
+                        )}
+                        {index === 1 && <FileEdit className="lg:h-3 xl:h-4" />}
+                        {index === 2 && (
+                          <MessageSquare className="lg:h-3 xl:h-4" />
+                        )}
+                        {index === 3 && (
+                          <PanelRightOpen className="lg:h-3 xl:h-4" />
+                        )}
+                        {index === 4 && (
+                          <LayoutGrid className="lg:h-3 xl:h-4" />
+                        )}
+                        {index === 5 && <BookOpen className="lg:h-3 xl:h-4" />}
+                        {index === 6 && <Monitor className="lg:h-3 xl:h-4" />}
+                        {index === 7 && <Minus className="lg:h-3 xl:h-4" />}
+                        {index === 8 && <Plus className="lg:h-3 xl:h-4" />}
+                        {text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+        {/* Apresentacao */}
+        {isPresentation ? (
+          <div
+            className="justify-center items-center h-[100%] pb-[45px] w-full bg-[#323131] m-0 absolute flex"
+            style={styleSlide}
+          >
+            <div className="w-[7%] h-[25px] bg-[#1a1a1a] absolute bottom-1 right-1 rounded-[30px] flex items-center justify-evenly">
+              <button
+                className="w-[20px] flex justify-center items-center border-2 rounded-[50%] hover:bg-[#464444] transition-all duration-300 cursor-pointer"
+                onClick={previousSlide}
+              >
+                <p>
+                  <ChevronLeft className="h-3 text-gray-100" />
+                </p>
+              </button>
+              <button
+                className="w-[20px] flex justify-center items-center border-2 rounded-[50%] hover:bg-[#464444] transition-all duration-300 cursor-pointer"
+                onClick={nextSlide}
+              >
+                <p>
+                  <ChevronRight className="h-3 text-gray-100" />
+                </p>
+              </button>
+              <div className="border-l-2 border-[#323131] h-full "></div>
+              <button
+                className="w-[20px] flex justify-center items-center border-2 rounded-[50%] hover:bg-red-600 transition-all duration-300 cursor-pointer"
+                onClick={closePresentation}
+              >
+                <p>
+                  <X className="h-3 text-gray-100" />
+                </p>
+              </button>
+            </div>
+          </div>
+        ) : null}
         {/* Config */}
         {isConfig ? (
           <div className="justify-center items-center h-[100%] pb-[45px] w-full bg-[#202020] m-0 p-0">
@@ -1261,6 +1822,26 @@ function App() {
                     onClick={openWhatsapp}
                   >
                     <img src="iconWhatsapp.svg" />
+                  </div>
+                ) : null}
+
+                {isIconPowerPoint ? (
+                  <div
+                    className={`hover:bg-[#eaebee] flex transition-all duration-500 cursor-pointer m-0 p-[1px] me-[7px] rounded-md
+                  ${
+                    isPowerPoint
+                      ? 'bg-[#eaebee] border-b-2 border-blue-600'
+                      : 'h-[37px]'
+                  }
+                  ${
+                    isIconPowerPoint
+                      ? 'border-b-2 border-blue-600 h-[37px]'
+                      : 'h-[37px]'
+                  }
+                  `}
+                    onClick={openPowerPoint}
+                  >
+                    <img src="PowerPoint.png" />
                   </div>
                 ) : null}
               </div>
