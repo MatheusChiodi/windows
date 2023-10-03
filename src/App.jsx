@@ -511,6 +511,7 @@ function App() {
       setContact(false);
       setCalendar(false);
       setVscode(false);
+      setWhatsapp(false);
       setEdge(false);
       setConfig(false);
       setSearch(false);
@@ -1801,7 +1802,7 @@ function App() {
                     `}
                     onClick={openConfig}
                   >
-                    <Settings className="h-5" />
+                    <Settings className="h-5 mt-1" />
                   </div>
                 ) : null}
 
