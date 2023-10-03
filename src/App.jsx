@@ -1482,7 +1482,7 @@ function App() {
                   <div
                     className="border-2 border-[#a92b1a] w-[90%] h-[100px] hover:border-[4px]  transition-all cursor-pointer"
                     style={{
-                      backgroundImage: "url('/slides/Inicio.png')",
+                      backgroundImage: "url('slides/Inicio.png')",
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       outline: 'none',
@@ -1494,7 +1494,7 @@ function App() {
                   <div
                     className="border-2 border-[#d2d2d2] w-[90%] h-[100px] hover:border-[3px] hover:border-[#a92b1a] transition-all duration-300 cursor-not-allowed"
                     style={{
-                      backgroundImage: "url('/slides/Jornada.png')",
+                      backgroundImage: "url('slides/Jornada.png')",
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       outline: 'none',
@@ -1506,7 +1506,7 @@ function App() {
                   <div
                     className="border-2 border-[#d2d2d2] w-[90%] h-[100px] hover:border-[3px] hover:border-[#a92b1a] transition-all duration-300 cursor-not-allowed"
                     style={{
-                      backgroundImage: "url('/slides/App.png')",
+                      backgroundImage: "url('slides/App.png')",
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       outline: 'none',
@@ -1518,7 +1518,7 @@ function App() {
                   <div
                     className="border-2 border-[#d2d2d2] w-[90%] h-[100px] hover:border-[3px] hover:border-[#a92b1a] transition-all duration-300 cursor-not-allowed"
                     style={{
-                      backgroundImage: "url('/slides/Ideia.png')",
+                      backgroundImage: "url('slides/Ideia.png')",
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       outline: 'none',
@@ -1530,7 +1530,7 @@ function App() {
                 <div
                   className="w-4/5 h-[90%] border-2 border-gray-300"
                   style={{
-                    backgroundImage: "url('/slides/Inicio.png')",
+                    backgroundImage: "url('slides/Inicio.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
