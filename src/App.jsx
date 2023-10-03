@@ -103,7 +103,7 @@ function App() {
   const stylesSlideMap = {
     1: {
       gif: {
-        backgroundImage: "url('/slides/Inicio.gif')",
+        backgroundImage: "url('slides/Inicio.gif')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -111,7 +111,7 @@ function App() {
         zIndex: 100,
       },
       png: {
-        backgroundImage: "url('/slides/Inicio.png')",
+        backgroundImage: "url('slides/Inicio.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -121,7 +121,7 @@ function App() {
     },
     2: {
       gif: {
-        backgroundImage: "url('/slides/Jornada.gif')",
+        backgroundImage: "url('slides/Jornada.gif')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -129,7 +129,7 @@ function App() {
         zIndex: 100,
       },
       png: {
-        backgroundImage: "url('/slides/Jornada.png')",
+        backgroundImage: "url('slides/Jornada.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -139,7 +139,7 @@ function App() {
     },
     3: {
       gif: {
-        backgroundImage: "url('/slides/App.gif')",
+        backgroundImage: "url('slides/App.gif')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -147,7 +147,7 @@ function App() {
         zIndex: 100,
       },
       png: {
-        backgroundImage: "url('/slides/App.png')",
+        backgroundImage: "url('slides/App.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -157,7 +157,7 @@ function App() {
     },
     4: {
       gif: {
-        backgroundImage: "url('/slides/Ideia.gif')",
+        backgroundImage: "url('slides/Ideia.gif')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -165,7 +165,7 @@ function App() {
         zIndex: 100,
       },
       png: {
-        backgroundImage: "url('/slides/Ideia.png')",
+        backgroundImage: "url('slides/Ideia.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -1326,7 +1326,7 @@ function App() {
         {/* PowerPoint */}
         {isPowerPoint ? (
           <div className="flex flex-col h-full w-full bg-gray-200 m-0 pb-[45px]">
-            <div className="w-full h-16 max-h-20 bg-[#b7472a] flex flex-wrap justify-between">
+            <div className="w-full h-17 max-h-20 bg-[#b7472a] flex flex-wrap justify-between">
               <div className="w-full flex justify-between">
                 <div className="flex items-center justify-center text-gray-100 text-xs sm:text-sm md:text-base h-[30px]">
                   <div className="ml-2 p-0 m-0 h-[45px] hover:bg-[#a92b1a] transition-all duration-500 cursor-pointer">
