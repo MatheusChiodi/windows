@@ -1,4 +1,4 @@
-import Itens from "./Itens";
+import Itens from './Itens';
 
 export default function PageConfig() {
   return (
@@ -11,9 +11,7 @@ export default function PageConfig() {
               <p className="m-0 p-0 gap-0 leading-none font-bold text-[15px]">
                 Matheus Chiodi
                 <br />
-                <span className="font-medium">
-                  matheuschiodi20@gmail.com
-                </span>
+                <span className="font-medium">mchiodidev@gmail.com</span>
               </p>
             </div>
           </div>
