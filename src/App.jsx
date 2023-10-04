@@ -1144,7 +1144,7 @@ function App() {
                 <div className="m-0 p-[3px] flex items-center hover:bg-[#6d7077] transition-all duration-50 rounded-sm cursor-not-allowed">
                   <Home className="h-5 text-gray-50" />
                 </div>
-                <div className="w-[55%] text-gray-400 bg-[#46474b] px-4 rounded-xl flex items-center  justify-between cursor-not-allowed">
+                <div className="text-gray-400 bg-[#46474b] px-4 rounded-xl flex items-center  justify-between cursor-not-allowed">
                   <p className="flex items-center text-sm overflow-hidden h-[32px]">
                     <div className="hover:bg-[#56585d] transition-all duration-500 rounded-sm px-[2px] py-[4px] cursor-pointer me-2">
                       <LockIcon className="h-3 text-gray-300" />
