@@ -19,7 +19,7 @@ Este projeto foi um desafio para replicar a complexa e icônica interface do Win
 - **Painel de Configuração**: Acesso às principais configurações simuladas.
 - **WhatsApp**: Uma representação do popular aplicativo de mensagens.
 - **Edge**: Navegue por sites simulados e experiencie a sensação de estar usando o navegador Edge.
-- **Apresentação no PowerPoint**: Crie e visualize apresentações simuladas diretamente na interface.
+- **Apresentação no PowerPoint**: Veja uma apresentação que foi realizada por mim em uma das escola de Araraquara
 - **VSCode**: Um editor de código simplificado, trazendo a sensação do VSCode real.
 - ...e **muito mais**!
 
