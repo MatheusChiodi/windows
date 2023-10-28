@@ -2,7 +2,7 @@
 
 ---
 
-![Windows UI Preview](./oublic/windows.png)
+![Windows UI Preview](./public/windows.png)
 
 Bem-vindo ao meu projeto de recriação da interface do **Windows**! Desenvolvi este site para emular a aparência e a sensação do Windows, utilizando a poderosa biblioteca **ReactJS**.
 
